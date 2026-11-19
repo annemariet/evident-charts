@@ -131,6 +131,29 @@ The ZIP is saved as `dist/evident-charts-<version>.zip`. It contains the manifes
 
 The root manifest uses the [Agent Plugins format](https://developers.openai.com/plugins/build/plugins), with Claude and Codex compatibility manifests included. For public submission, upload the ZIP through the [OpenAI developer dashboard](https://developers.openai.com/plugins/deploy/submission), then complete its checks and review.
 
+## Try it yourself (Compute! eval fork)
+
+Fresh clone of `annemariet/evident-charts`, feature branch or `main` after merge:
+
+```sh
+git clone https://github.com/annemariet/evident-charts.git
+cd evident-charts
+uv sync --locked
+uv run python evals/build-vs-evident/scripts/render_charts.py
+```
+
+Expected last line:
+
+```text
+Wrote PNGs to .../evals/build-vs-evident/charts
+```
+
+Six PNGs appear under `evals/build-vs-evident/charts/` (`normalized-stack-*`, `many-categories-*`, `time-series-*`, each with `-build-my-chart` and `-evident-charts` suffixes). Side-by-side notes: [EVALUATION.md](https://github.com/annemariet/evident-charts/blob/main/EVALUATION.md) (on the fork; not in the plugin ZIP).
+
+**Talk-style Altair build:** in Cursor or Claude, load `skills/evident-charts` and ask for a step-by-step Altair chart; the agent should follow `skills/evident-charts/references/talk-build.md` (one question per grammar step). Compare with `build-my-chart` in the [Compute! talk repo](https://github.com/annemariet/compute-altair-talk).
+
+This fork adds only that reference and the eval assets; upstream `LICENSE` is unchanged.
+
 ## Contributing
 
 Issues and pull requests are welcome. [AGENTS.md](https://github.com/rhiever/evident-charts/blob/main/AGENTS.md) covers the tests and the rule format; changes are listed in the [changelog](CHANGELOG.md).

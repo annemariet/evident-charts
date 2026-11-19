@@ -41,6 +41,7 @@ FILES = (
     "skills/evident-charts/references/integrity.md",
     "skills/evident-charts/references/libraries.md",
     "skills/evident-charts/references/sources.md",
+    "skills/evident-charts/references/talk-build.md",
     "skills/evident-charts/references/text.md",
     "skills/evident-charts/scripts/check_chart.py",
     "skills/evident-charts/scripts/check_palette.py",
