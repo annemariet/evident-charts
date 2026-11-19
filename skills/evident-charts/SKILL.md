@@ -17,7 +17,7 @@ metadata:
 
 Charts that make one point a reader gets at a glance. `<skill-dir>` is this skill's folder: `${CLAUDE_SKILL_DIR}` where the host fills it in, else the folder holding this SKILL.md (in claude.ai chat, its copy in the sandbox), never the working directory. Run scripts by absolute path with the project's Python.
 
-Critique, review, or a chart image with a question: follow `references/critique.md`; otherwise the workflow below.
+Critique, review, or a chart image with a question: follow `references/critique.md`; step-by-step Altair with one question per grammar step: follow `references/talk-build.md` (Compute!-style grill, same rules and checks); otherwise the workflow below.
 
 ## Host and user instructions
 
@@ -65,5 +65,6 @@ Read a reference only when its decision comes up.
 | `references/integrity.md` | An analysis, axis, scale, uncertainty, or accessibility question |
 | `references/text.md` | Titles, labels, annotation, layout |
 | `references/color.md` | A color decision beyond the defaults |
+| `references/talk-build.md` | User wants an Altair build, one question at a time before each step |
 | `scripts/evident.py` | Optional matplotlib helper; its docstring is the usage |
 | `assets/presets.json`, `assets/palettes.json` | Destination sizes and type scale; house colors |

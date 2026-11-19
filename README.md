@@ -131,6 +131,37 @@ The ZIP is saved as `dist/evident-charts-<version>.zip`. It contains the manifes
 
 The root manifest uses the [Agent Plugins format](https://developers.openai.com/plugins/build/plugins), with Claude and Codex compatibility manifests included. For public submission, upload the ZIP through the [OpenAI developer dashboard](https://developers.openai.com/plugins/deploy/submission), then complete its checks and review.
 
+## Try it yourself (Compute! eval fork)
+
+Fresh clone (use branch until merged to `main`):
+
+```sh
+git clone -b cursor/eval-build-my-chart-ed8d https://github.com/annemariet/evident-charts.git
+cd evident-charts
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env  # or ensure `uv` is on PATH
+uv sync --locked
+uv run python evals/build-vs-evident/scripts/render_charts.py
+uv run python evals/build-vs-evident/scripts/render_charts.py
+git status --short
+```
+
+Expected:
+
+```text
+Wrote PNGs to .../evident-charts/evals/build-vs-evident/charts
+```
+
+(twice), then **no output** from `git status` if PNG bytes are unchanged (expected in this same locked environment; not guaranteed across different OS or font installs).
+
+Six PNGs under `evals/build-vs-evident/charts/`. Side-by-side write-up: [EVALUATION.md](https://github.com/annemariet/evident-charts/blob/main/EVALUATION.md) (fork-only; not in the plugin ZIP).
+
+**Live comparison (needs an agent):** in Cursor or Claude, load `skills/evident-charts` (talk-build) or `build-my-chart` from the [Compute! talk repo](https://github.com/annemariet/compute-altair-talk) with `scripted_answers.md`. Committed **walk-throughs** under `evals/build-vs-evident/walkthroughs/` are written from each `SKILL.md`, not recorded agent sessions; the render script only replays `final_chart.py`.
+
+`skills/evident-charts/references/talk-build.md` ships in the release ZIP (`build_release.py`); eval PNGs and `EVALUATION.md` do not.
+
+Upstream `LICENSE` is unchanged.
+
 ## Contributing
 
 Issues and pull requests are welcome. [AGENTS.md](https://github.com/rhiever/evident-charts/blob/main/AGENTS.md) covers the tests and the rule format; changes are listed in the [changelog](CHANGELOG.md).
