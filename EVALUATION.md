@@ -1,66 +1,58 @@
 # Evaluation: build-my-chart vs evident-charts
 
-Compute! bead `amai-lab-lnew` (Nov 2026). Each case has **one live agent run per skill** under `evals/build-vs-evident/runs/<case>/{build-my-chart|evident-charts}/transcript.md`, with `final_chart.py` replayed by `scripts/render_charts.py`. **Caught / missed below come only from those transcripts and outputs.**
+Compute! bead `amai-lab-lnew` (Nov 2026).
 
-Data: **synthetic** `stack_synthetic.csv`; [Vega `unemployment-across-industries`](https://github.com/vega/vega-datasets) JSON. Shared answers: `scripted_answers.md`.
+**Method:** Walk-throughs written from each skill’s `SKILL.md` (and build-my-chart `best-practices.md` where relevant) against shared `scripted_answers.md` — **not live agent sessions.** Each walk-through is `evals/build-vs-evident/walkthroughs/<case>/{build-my-chart|evident-charts}/walkthrough.md` plus `final_chart.py`; PNGs are replayed by `scripts/render_charts.py`. Caught / missed below come **only** from those walk-through notes and the rendered charts.
+
+A live head-to-head needs a real Claude or Cursor session; see README **Try it yourself**.
+
+Data: **synthetic** `stack_synthetic.csv`; [Vega `unemployment-across-industries`](https://github.com/vega/vega-datasets) JSON.
 
 ## 1. Normalized stack (synthetic)
 
 | | build-my-chart | evident-charts |
 | --- | --- | --- |
 | PNG | `evals/build-vs-evident/charts/normalized-stack-build-my-chart.png` | `evals/build-vs-evident/charts/normalized-stack-evident-charts.png` |
-| Run | `runs/normalized-stack/build-my-chart/` | `runs/normalized-stack/evident-charts/` |
+| Walk-through | `walkthroughs/normalized-stack/build-my-chart/` | `walkthroughs/normalized-stack/evident-charts/` |
 
 ![build-my-chart normalized stack](evals/build-vs-evident/charts/normalized-stack-build-my-chart.png)
 
 ![evident-charts normalized stack](evals/build-vs-evident/charts/normalized-stack-evident-charts.png)
 
-**build-my-chart caught:** step-13 percent-vs-absolute misread; ordered `level` with blues sequential (correct for ordered levels per step 8b); grammar step cards.
+**build-my-chart:** caught normalized stack, ordered blues for levels, scripted step-13 misread. Missed literal title, no automated checks.
 
-**build-my-chart missed:** title stays user literal unless step 12 pushes a takeaway; no automated lint.
-
-**evident-charts caught:** takeaway title; normalized share axis; stack white edges; talk-build one question per step.
-
-**evident-charts missed:** `check_chart.py` not executed in the run; matplotlib not Altair for the talk stack.
+**evident-charts:** caught takeaway title, percent axis, stack edges. Missed check scripts not run; matplotlib not Altair.
 
 ## 2. Many categories (14 industries, 2009)
 
 | | build-my-chart | evident-charts |
 | --- | --- | --- |
 | PNG | `evals/build-vs-evident/charts/many-categories-build-my-chart.png` | `evals/build-vs-evident/charts/many-categories-evident-charts.png` |
-| Run | `runs/many-categories/build-my-chart/` | `runs/many-categories/evident-charts/` |
+| Walk-through | `walkthroughs/many-categories/build-my-chart/` | `walkthroughs/many-categories/evident-charts/` |
 
 ![build-my-chart many categories](evals/build-vs-evident/charts/many-categories-build-my-chart.png)
 
 ![evident-charts many categories](evals/build-vs-evident/charts/many-categories-evident-charts.png)
 
-**build-my-chart caught:** step 8b follow-up when user asked for 14 categorical hues (≤10 rule); zero baseline on rate; step-13 legend discrimination risk after user overrode palette advice.
+**build-my-chart:** caught zero baseline on rate, sort shows Construction first. Missed 14 hues vs best-practices **8b** (≤10 categorical hues); weak legend; generic title.
 
-**build-my-chart missed:** after user override, chart still ships 14 hues; title does not name Construction unless user wording does.
-
-**evident-charts caught:** C3 cap → Construction accent (#D55E00) + gray peers; **C2** highlight pattern; legend `Patch` matches bar colours; title states Construction lead.
-
-**evident-charts missed:** fewer grammar-of-graphics labels per turn than build-my-chart; `check_svg` skipped.
+**evident-charts:** caught C3 handling (highlight + gray), legend patches match bars, Construction in title. Missed fewer grammar labels; no `check_svg` in walk-through.
 
 ## 3. Time series (Construction vs Leisure and hospitality, `rate`)
 
 | | build-my-chart | evident-charts |
 | --- | --- | --- |
 | PNG | `evals/build-vs-evident/charts/time-series-build-my-chart.png` | `evals/build-vs-evident/charts/time-series-evident-charts.png` |
-| Run | `runs/time-series/build-my-chart/` | `runs/time-series/evident-charts/` |
+| Walk-through | `walkthroughs/time-series/build-my-chart/` | `walkthroughs/time-series/evident-charts/` |
 
 ![build-my-chart time series](evals/build-vs-evident/charts/time-series-build-my-chart.png)
 
 ![evident-charts time series](evals/build-vs-evident/charts/time-series-evident-charts.png)
 
-**build-my-chart caught:** both series present; **rate** on y with percent axis title; step-13 notes sample ends Feb 2010 and equal colour weight.
+**build-my-chart:** caught two series, rate axis, zero baseline. Missed equal visual weight vs communicate intent; descriptive title.
 
-**build-my-chart missed:** no emphasis for Construction despite communicate intent; title is descriptive, not peak comparison.
+**evident-charts:** caught rate axis, two series, Construction accent, honest title/subtitle. Missed little beyond truncated sample note.
 
-**evident-charts caught:** rate axis; two visible series; Construction accent vs gray; title claims 2009 peak gap only between the two plotted series; subtitle notes Feb 2010 cutoff.
+## Recommendation (walk-through scope only)
 
-**evident-charts missed:** truncated tail not analyzed beyond subtitle mention.
-
-## Recommendation
-
-**Merge ideas:** keep **build-my-chart** for the live Compute! Altair walkthrough; merge into **evident-charts** the talk-build question cadence (`talk-build.md`, included in the plugin ZIP), takeaway titles (TI-1), C3 palette handling for >10 categories, and post-build `check_chart` / `check_svg` when tools are available. Do **not** switch the talk demo to evident-charts alone.
+**Merge ideas:** the walk-throughs suggest keeping **build-my-chart** for an Altair grammar demo while borrowing from **evident-charts** the talk-build cadence (`talk-build.md` in the ZIP), takeaway titles, and C3-style palette discipline. This comparison does **not** prove live agent behaviour — validate that in Cursor or Claude using **Try it yourself**.

@@ -1,4 +1,4 @@
-"""Output of evident-charts talk-build run: normalized stack."""
+"""evident-charts walk-through final: normalized stack."""
 from pathlib import Path
 
 import evident as ev

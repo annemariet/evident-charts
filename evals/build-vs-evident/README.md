@@ -1,7 +1,7 @@
 # build-my-chart vs evident-charts eval
 
-Not a CI harness. **Live runs** live under `runs/<case>/{build-my-chart|evident-charts}/` (transcript + `final_chart.py`). PNGs are replays of those finals via `scripts/render_charts.py`.
+Not a CI harness. **Walk-throughs** (not live agent sessions) live under `walkthroughs/<case>/{build-my-chart|evident-charts}/` (`walkthrough.md` + `final_chart.py`). PNGs replay those finals via `scripts/render_charts.py`; byte-identical PNGs are promised for **two consecutive runs in the same `uv sync --locked` environment**, not across arbitrary machines.
 
-- **Data:** `data/stack_synthetic.csv` (**synthetic**, talk-shaped table); `data/unemployment-industries.json` (Vega public sample).
-- **Answers:** `scripted_answers.md` (shared across both skills per case).
+- **Data:** `data/stack_synthetic.csv` (**synthetic**); `data/unemployment-industries.json` (Vega public).
+- **Answers:** `scripted_answers.md`.
 - **Summary:** [EVALUATION.md](../../EVALUATION.md).

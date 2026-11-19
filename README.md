@@ -152,11 +152,11 @@ Expected:
 Wrote PNGs to .../evident-charts/evals/build-vs-evident/charts
 ```
 
-(twice), then **no output** from `git status` (PNG bytes unchanged).
+(twice), then **no output** from `git status` if PNG bytes are unchanged (expected in this same locked environment; not guaranteed across different OS or font installs).
 
 Six PNGs under `evals/build-vs-evident/charts/`. Side-by-side write-up: [EVALUATION.md](https://github.com/annemariet/evident-charts/blob/main/EVALUATION.md) (fork-only; not in the plugin ZIP).
 
-**Skill walkthrough (needs an agent):** in Cursor or Claude, load `skills/evident-charts` and run talk-build step by step, or compare with `build-my-chart` in the [Compute! talk repo](https://github.com/annemariet/compute-altair-talk). The render script only replays committed `runs/*/final_chart.py`; it does not substitute for an agent session.
+**Live comparison (needs an agent):** in Cursor or Claude, load `skills/evident-charts` (talk-build) or `build-my-chart` from the [Compute! talk repo](https://github.com/annemariet/compute-altair-talk) with `scripted_answers.md`. Committed **walk-throughs** under `evals/build-vs-evident/walkthroughs/` are written from each `SKILL.md`, not recorded agent sessions; the render script only replays `final_chart.py`.
 
 `skills/evident-charts/references/talk-build.md` ships in the release ZIP (`build_release.py`); eval PNGs and `EVALUATION.md` do not.
 

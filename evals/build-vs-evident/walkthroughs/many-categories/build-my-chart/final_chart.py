@@ -1,4 +1,4 @@
-"""build-my-chart run: 14 industry hues (user insisted after step 8b follow-up)."""
+"""build-my-chart walk-through: 14 nominal hues per scripted encodings."""
 from __future__ import annotations
 
 import json

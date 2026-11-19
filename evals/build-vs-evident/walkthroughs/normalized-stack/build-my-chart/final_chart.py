@@ -1,4 +1,4 @@
-"""Output of build-my-chart run: normalized stack."""
+"""build-my-chart walk-through final: normalized stack."""
 from pathlib import Path
 
 import altair as alt

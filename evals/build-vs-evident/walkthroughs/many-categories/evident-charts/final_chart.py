@@ -1,4 +1,4 @@
-"""evident-charts run: Construction highlight, C3-compliant legend."""
+"""evident-charts walk-through final: Construction highlight."""
 from __future__ import annotations
 
 import json

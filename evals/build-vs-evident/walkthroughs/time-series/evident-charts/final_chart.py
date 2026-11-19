@@ -1,4 +1,4 @@
-"""evident-charts run: rate time series, Construction accent."""
+"""evident-charts walk-through final: rate time series."""
 from __future__ import annotations
 
 import json

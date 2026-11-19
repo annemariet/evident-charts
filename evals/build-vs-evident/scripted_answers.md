@@ -27,7 +27,6 @@ Same scripted replies for every case unless noted.
 | 1 | Filter year 2009; aggregate mean `rate` by `series` (14 industries). |
 | 4 | Horizontal bars. |
 | 5 | y=series, x=rate, color=series (one hue per industry). |
-| 8 (follow-up) | After the agent cites ≤10 categorical hues: insist on one hue per industry anyway. |
 | 8 | Zero baseline on rate. |
 | 12 | Title states Construction lead; subtitle Vega unemployment sample. |
 

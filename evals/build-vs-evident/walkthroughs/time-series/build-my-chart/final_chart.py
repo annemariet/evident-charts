@@ -1,4 +1,4 @@
-"""build-my-chart run: two-series rate lines."""
+"""build-my-chart walk-through final: two-series rate lines."""
 from __future__ import annotations
 
 import json
