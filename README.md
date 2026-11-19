@@ -133,26 +133,34 @@ The root manifest uses the [Agent Plugins format](https://developers.openai.com/
 
 ## Try it yourself (Compute! eval fork)
 
-Fresh clone of `annemariet/evident-charts`, feature branch or `main` after merge:
+Fresh clone (use branch until merged to `main`):
 
 ```sh
-git clone https://github.com/annemariet/evident-charts.git
+git clone -b cursor/eval-build-my-chart-ed8d https://github.com/annemariet/evident-charts.git
 cd evident-charts
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env  # or ensure `uv` is on PATH
 uv sync --locked
 uv run python evals/build-vs-evident/scripts/render_charts.py
+uv run python evals/build-vs-evident/scripts/render_charts.py
+git status --short
 ```
 
-Expected last line:
+Expected:
 
 ```text
-Wrote PNGs to .../evals/build-vs-evident/charts
+Wrote PNGs to .../evident-charts/evals/build-vs-evident/charts
 ```
 
-Six PNGs appear under `evals/build-vs-evident/charts/` (`normalized-stack-*`, `many-categories-*`, `time-series-*`, each with `-build-my-chart` and `-evident-charts` suffixes). Side-by-side notes: [EVALUATION.md](https://github.com/annemariet/evident-charts/blob/main/EVALUATION.md) (on the fork; not in the plugin ZIP).
+(twice), then **no output** from `git status` (PNG bytes unchanged).
 
-**Talk-style Altair build:** in Cursor or Claude, load `skills/evident-charts` and ask for a step-by-step Altair chart; the agent should follow `skills/evident-charts/references/talk-build.md` (one question per grammar step). Compare with `build-my-chart` in the [Compute! talk repo](https://github.com/annemariet/compute-altair-talk).
+Six PNGs under `evals/build-vs-evident/charts/`. Side-by-side write-up: [EVALUATION.md](https://github.com/annemariet/evident-charts/blob/main/EVALUATION.md) (fork-only; not in the plugin ZIP).
 
-This fork adds only that reference and the eval assets; upstream `LICENSE` is unchanged.
+**Skill walkthrough (needs an agent):** in Cursor or Claude, load `skills/evident-charts` and run talk-build step by step, or compare with `build-my-chart` in the [Compute! talk repo](https://github.com/annemariet/compute-altair-talk). The render script only replays committed `runs/*/final_chart.py`; it does not substitute for an agent session.
+
+`skills/evident-charts/references/talk-build.md` ships in the release ZIP (`build_release.py`); eval PNGs and `EVALUATION.md` do not.
+
+Upstream `LICENSE` is unchanged.
 
 ## Contributing
 
